@@ -8,8 +8,6 @@ We want you to develop entirely new view of posts list. Posts are accessible by 
 
 Dev this task just like you'd dev a fully fledged application feature, that you plan to maintain long term. Use any libraries you want. We value excellent UX, attention to details, code quality, readability and performance. The more skills you show us, the better.
 
-Create your code in `frontend` directory and send us Git repository.
-
 ## Starting the backend
 
 The project requires **node >=18.19**, so check if you have the correct version. Install yarn globally `npm install -g yarn`, then install the dependencies with `yarn` on the backend folder.
