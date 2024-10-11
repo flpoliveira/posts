@@ -18,7 +18,7 @@ function Sidebar({
   selectedCategory?: string | null;
 }) {
   return (
-    <div className="bg-surface h-full md:min-h-[100vh] w-full border-r-[1px] border-accent md:w-fit">
+    <div className="bg-surface h-full md:min-h-screen w-full border-r-[1px] border-accent md:w-fit">
       <div className="bg-primary p-5 flex justify-center items-center">
         <span className="text-md text-primaryForeground text-center font-semibold">
           Posts
