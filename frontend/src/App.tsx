@@ -10,7 +10,12 @@ function App() {
   const [categoryFilter, setCategoryFilter] = useState<"all" | "favorite">(
     "all"
   );
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(
+    () => {
+      const selectedCategory = localStorage.getItem("selectedCategory");
+      return selectedCategory || null;
+    }
+  );
 
   const { data: categories } = useQuery({
     queryKey: ["categories"],
@@ -46,6 +51,11 @@ function App() {
     enabled: !!selectedCategory,
   });
 
+  function handleCategoryClick(id: string) {
+    setSelectedCategory(id);
+    localStorage.setItem("selectedCategory", id);
+  }
+
   return (
     <div className="w-full h-full flex min-h-[100vh] md:flex-row flex-col">
       <Sidebar
@@ -53,7 +63,7 @@ function App() {
         categoryFilter={categoryFilter}
         onChangeCategoryFilter={setCategoryFilter}
         selectedCategory={selectedCategory}
-        onCategoryClick={(id) => setSelectedCategory(id)}
+        onCategoryClick={handleCategoryClick}
         onFavoriteClick={(el, vl) => {
           favoriteCategory.mutate({
             ...el,
@@ -65,7 +75,7 @@ function App() {
         categories={categories}
         posts={posts}
         selectedCategory={selectedCategory}
-        onCategoryClick={(id) => setSelectedCategory(id)}
+        onCategoryClick={handleCategoryClick}
         onFavoriteClick={(el, vl) => {
           favoriteCategory.mutate({
             ...el,
