@@ -20,7 +20,7 @@ function FilterButton({
           ${
             type === "primary"
               ? "bg-primary text-primaryForeground"
-              : "bg-surface text-primary hover:bg-[rgba(0,0,0,0.05)]"
+              : "bg-surface text-primary"
           }
         `}
       onClick={onFilterClick}

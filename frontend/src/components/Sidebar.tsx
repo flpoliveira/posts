@@ -1,5 +1,6 @@
 import { InputRadio } from "./InputRadio";
 import { FilterButton } from "./FilterButton";
+import { CategoryType } from "../App.interface";
 
 function Sidebar({
   categories = [],
@@ -9,15 +10,12 @@ function Sidebar({
   onFavoriteClick,
   selectedCategory,
 }: {
-  categories?: Array<{ id: string; name: string; favorite: boolean }>;
+  categories?: Array<CategoryType>;
   categoryFilter: "all" | "favorite";
   onChangeCategoryFilter: (e: "all" | "favorite") => void;
   onCategoryClick: (id: string) => void;
-  onFavoriteClick: (
-    el: { id: string; name: string; favorite: boolean },
-    newValue: boolean
-  ) => void;
-  selectedCategory?: string;
+  onFavoriteClick: (el: CategoryType, newValue: boolean) => void;
+  selectedCategory?: string | null;
 }) {
   return (
     <div className="bg-surface h-full md:min-h-[100vh] w-full border-r-[1px] border-accent md:w-fit">

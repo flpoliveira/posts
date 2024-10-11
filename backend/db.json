@@ -18,12 +18,12 @@
     {
       "id": "fdffc4e4-0ff8-4e76-b522-1eeb43f3587c",
       "name": "DIY Projects",
-      "favorite": true
+      "favorite": false
     },
     {
       "id": "d5c9d5c9-5a5c-4f5f-9a9a-7c8a8c7c8a8c",
       "name": "Investing",
-      "favorite": false
+      "favorite": true
     },
     {
       "id": "a1b2c3d4-e5f6-4a5b-8c9d-0e1f2a3b4c5d",

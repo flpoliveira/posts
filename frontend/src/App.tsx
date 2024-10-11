@@ -3,27 +3,25 @@ import { Feed } from "./components/Feed";
 import { Sidebar } from "./components/Sidebar";
 import { useMemo, useState } from "react";
 import { api } from "./system/api";
+import { CategoryType, PostType } from "./App.interface";
 
 function App() {
   const queryClient = useQueryClient();
   const [categoryFilter, setCategoryFilter] = useState<"all" | "favorite">(
     "all"
   );
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const { data: categories } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
       const response = await api.get("/categories");
-      return response?.data as Array<{
-        id: string;
-        name: string;
-        favorite: boolean;
-      }>;
+      return response?.data as Array<CategoryType>;
     },
   });
 
   const favoriteCategory = useMutation({
-    mutationFn: async (el: { id: string; name: string; favorite: boolean }) => {
+    mutationFn: async (el: CategoryType) => {
       return await api.put(`/categories/${el.id}`, el);
     },
     onSettled: () => {
@@ -39,13 +37,23 @@ function App() {
       : categories?.filter((category) => category.favorite);
   }, [categories, categoryFilter]);
 
+  const { data: posts } = useQuery({
+    queryKey: ["posts", selectedCategory],
+    queryFn: async () => {
+      const response = await api.get(`/categories/${selectedCategory}/posts`);
+      return response?.data as Array<PostType>;
+    },
+    enabled: !!selectedCategory,
+  });
+
   return (
     <div className="w-full h-full flex min-h-[100vh] md:flex-row flex-col">
       <Sidebar
         categories={filteredCategories}
         categoryFilter={categoryFilter}
         onChangeCategoryFilter={setCategoryFilter}
-        onCategoryClick={(id) => console.log(id)}
+        selectedCategory={selectedCategory}
+        onCategoryClick={(id) => setSelectedCategory(id)}
         onFavoriteClick={(el, vl) => {
           favoriteCategory.mutate({
             ...el,
@@ -53,7 +61,18 @@ function App() {
           });
         }}
       />
-      <Feed />
+      <Feed
+        categories={categories}
+        posts={posts}
+        selectedCategory={selectedCategory}
+        onCategoryClick={(id) => setSelectedCategory(id)}
+        onFavoriteClick={(el, vl) => {
+          favoriteCategory.mutate({
+            ...el,
+            favorite: vl,
+          });
+        }}
+      />
     </div>
   );
 }
