@@ -57,7 +57,7 @@ function App() {
   }
 
   return (
-    <div className="w-full h-full flex min-h-screen md:flex-row flex-col">
+    <div className="w-screen h-full flex min-h-screen md:flex-row flex-col">
       <Sidebar
         categories={filteredCategories}
         categoryFilter={categoryFilter}
