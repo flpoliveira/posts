@@ -25,7 +25,7 @@ function Feed({
       <div className="w-full h-full flex flex-col rounded-sm border border-accent [&>div:not(:last-child)]:border-b">
         <div className="border-accent w-full py-5 px-9">
           <span className="text-md font-semibold text-foregroundSecondary">
-            {selectedCategory
+            {currentCategory
               ? `Found ${posts.length} posts of ${currentCategory?.name}`
               : "No posts found"}
           </span>
@@ -52,7 +52,7 @@ function Feed({
             <div className="min-h-96 flex items-center justify-center">
               <span className="text-md text-foregroundSecondary">
                 Select a category to view its posts.
-                {selectedCategory &&
+                {currentCategory &&
                   "No posts here? Try exploring another category!"}
               </span>
             </div>
