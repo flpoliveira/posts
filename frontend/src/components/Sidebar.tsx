@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { InputRadio } from "./InputRadio";
-import { Button } from "./Button";
+import { FilterButton } from "./FilterButton";
 
 function Sidebar() {
   const [value, setValue] = useState("all");
@@ -21,20 +21,20 @@ function Sidebar() {
           ]}
         />
         <div className="flex gap-2 md:flex-col overflow-auto">
-          <Button
+          <FilterButton
             type={"secondary"}
             onClick={() => null}
             label="Cooking"
             onClickIcon={() => null}
           />
-          <Button
+          <FilterButton
             type={"primary"}
             onClick={() => null}
             label="Latest Tech News"
             onClickIcon={() => null}
             isFavorite
           />
-          <Button
+          <FilterButton
             type={"primary"}
             onClick={() => null}
             label="Travel and Adventure"

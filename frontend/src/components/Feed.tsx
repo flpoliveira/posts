@@ -1,4 +1,4 @@
-import { Button } from "./Button";
+import { FilterButton } from "./FilterButton";
 
 function Post() {
   return (
@@ -15,24 +15,24 @@ function Post() {
         dishes, from hearty pasta bakes to stir-fries.
       </span>
       <div className="flex flex-wrap gap-2">
-        <Button
+        <FilterButton
           type={"secondary"}
-          onClick={() => null}
           label="Cooking"
-          onClickIcon={() => null}
+          onFilterClick={() => null}
+          onFavoriteClick={() => null}
         />
-        <Button
+        <FilterButton
           type={"primary"}
-          onClick={() => null}
           label="Latest Tech News"
-          onClickIcon={() => null}
-          isFavorite
+          onFilterClick={() => null}
+          onFavoriteClick={() => null}
+          isFavorited
         />
-        <Button
+        <FilterButton
           type={"primary"}
-          onClick={() => null}
+          onFilterClick={() => null}
+          onFavoriteClick={() => null}
           label="Travel and Adventure"
-          onClickIcon={() => null}
         />
       </div>
     </div>
