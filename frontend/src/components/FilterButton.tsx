@@ -1,4 +1,4 @@
-import { Star } from "../icon/Star";
+import { StarIcon } from "../icon/StarIcon";
 
 function FilterButton({
   type,
@@ -16,33 +16,36 @@ function FilterButton({
   return (
     <button
       type="button"
-      className={`transition-all duration-200 group items-center pl-6 pr-4 py-2 rounded-sm border-primary border w-fit group text-md flex gap-2 
-        ${
-          type === "primary"
-            ? "bg-primary text-primaryForeground hover:bg-opacity-90"
-            : "bg-surface text-primary hover:bg-accent"
-        }`}
+      className={`transition-all duration-200 items-center pl-6 pr-4 py-2 rounded-sm border-primary border w-fit group text-md flex gap-2 hover:bg-opacity-90
+          ${
+            type === "primary"
+              ? "bg-primary text-primaryForeground"
+              : "bg-surface text-primary hover:bg-[rgba(0,0,0,0.05)]"
+          }
+        `}
       onClick={onFilterClick}
     >
       <span className="text-md leading-6 text-nowrap">{label}</span>
       <div
-        className={`w-5 h-5 fill-none transition-all duration-75 hover:scale-125
-          ${
-            isFavorited
-              ? type === "primary"
-                ? "fill-primaryForeground"
-                : "fill-primary"
-              : ""
-          }
-          ${
-            type === "primary" ? "stroke-primaryForeground" : "stroke-primary"
-          }`}
+        className={`w-5 h-5 fill-none transition-all duration-75 hover:scale-125`}
         onClick={(e) => {
           e.stopPropagation();
           onFavoriteClick?.();
         }}
       >
-        <Star />
+        {isFavorited ? (
+          <StarIcon
+            className={
+              type === "primary" ? "fill-primaryForeground" : "fill-primary"
+            }
+          />
+        ) : (
+          <StarIcon
+            className={
+              type === "primary" ? "stroke-primaryForeground" : "stroke-primary"
+            }
+          />
+        )}
       </div>
     </button>
   );
